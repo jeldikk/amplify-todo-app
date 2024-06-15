@@ -10,24 +10,6 @@ import { client } from "../operations/todo.client";
 import { useRouter } from "next/router";
 import { deleteTodoAction, updateTodoAction } from "@/actions/todo.actions";
 
-// const client = generateClient<Schema>();
-
-// async function updateTodo(id: string, data: any) {
-//   const response = await client.models.Todo.update({
-//     id: id,
-//     ...data,
-//   });
-//   console.log({ response });
-//   return response;
-// }
-
-// async function deleteTodo(id: string) {
-//   const response = await client.models.Todo.delete({
-//     id,
-//   });
-//   return response;
-// }
-
 type Props = {
   todo: Todo;
 };
@@ -70,7 +52,7 @@ export default function TodoItem(props: Props) {
       })
     );
     await updateTodoAction(formData);
-    // console.log({ toggledTodo });
+    // below code is when you want to perform with out server actions
     // const response = await client.models.Todo.update({
     //   id: todo.id,
     //   status: todo.status === "COMPLETED" ? "PENDING" : "COMPLETED",
