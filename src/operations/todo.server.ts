@@ -6,21 +6,25 @@ import { generateClient } from "aws-amplify/api";
 export const client = generateClient<Schema>();
 
 export async function getTodoList() {
-  const { data: pending } = await serverClientWithCookies.models.Todo.list({
-    filter: {
-      status: {
-        eq: "PENDING",
+  try {
+    const { data: pending } = await serverClientWithCookies.models.Todo.list({
+      filter: {
+        status: {
+          eq: "PENDING",
+        },
       },
-    },
-  });
-  const { data: completed } = await serverClientWithCookies.models.Todo.list({
-    filter: {
-      status: {
-        eq: "COMPLETED",
+    });
+    const { data: completed } = await serverClientWithCookies.models.Todo.list({
+      filter: {
+        status: {
+          eq: "COMPLETED",
+        },
       },
-    },
-  });
-  return { pending, completed };
+    });
+    return { pending, completed };
+  } catch (err) {
+    throw err;
+  }
 }
 
 export async function updateTodo(id: string, data: any) {
