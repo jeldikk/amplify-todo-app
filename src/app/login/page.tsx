@@ -7,7 +7,6 @@ export default function LoginPage() {
     <div className="login-page">
       <Authenticator>
         {({ user, signOut }) => {
-          console.log({ user });
           return (
             <div className="anon">
               <Button onClick={signOut}>Sign Out</Button>

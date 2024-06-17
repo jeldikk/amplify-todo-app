@@ -32,7 +32,6 @@ export async function updateTodo(id: string, data: any) {
     id: id,
     ...data,
   });
-  console.log({ response });
   return response;
 }
 

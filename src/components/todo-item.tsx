@@ -16,7 +16,6 @@ type Props = {
 
 export default function TodoItem(props: Props) {
   const { todo } = props;
-  console.log({ todo });
   let priorityType: string, statusType: string;
   switch (todo.priority) {
     case "HIGH":

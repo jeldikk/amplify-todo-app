@@ -15,7 +15,6 @@ export async function createTeamAction(formData: FormData) {
         authMode: "userPool",
       }
     );
-    console.log({ team });
   } catch (err) {
     console.error(err);
     throw err;
