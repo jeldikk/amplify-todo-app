@@ -2,6 +2,7 @@ import MemberCreationForm from "@/components/member-creation-form";
 import MembersList from "@/components/members-list";
 import TeamCreationForm from "@/components/team-creation-form";
 import TeamGroupList from "@/components/team-group-list";
+import TeamMembersSummary from "@/components/team-members-summary";
 import { Member } from "@/models/member";
 import { TeamGroup } from "@/models/team";
 import { getAllMembers } from "@/operations/member";
@@ -24,6 +25,7 @@ export default async function RelationsPage() {
           <div className="w-1/3">
             <TeamCreationForm />
             <MemberCreationForm />
+            <TeamMembersSummary />
           </div>
           <div className="w-1/3">
             <TeamGroupList teams={teamsWithMembers as TeamGroup[]} />

@@ -4,6 +4,9 @@ import { cookies } from "next/headers";
 import { fetchAuthSession } from "aws-amplify/auth/server";
 import { generateServerClientUsingCookies } from "@aws-amplify/adapter-nextjs/api";
 import { Schema } from "../../amplify/data/resource";
+import { generateClient } from "aws-amplify/api";
+
+export const client = generateClient<Schema>();
 
 export const serverClientWithCookies = generateServerClientUsingCookies<Schema>(
   {
