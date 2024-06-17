@@ -14,6 +14,19 @@ const schema = a.schema({
       status: a.enum(["COMPLETED", "PENDING"]),
     })
     .authorization((allow) => [allow.guest()]),
+  Member: a
+    .model({
+      name: a.string().required(),
+      teamId: a.id(), // create a reference field
+      team: a.belongsTo("Team", "teamId"),
+    })
+    .authorization((allow) => [allow.authenticated("userPools")]),
+  Team: a
+    .model({
+      mantra: a.string().required(),
+      members: a.hasMany("Member", "teamId"),
+    })
+    .authorization((allow) => [allow.authenticated("userPools")]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

@@ -1,8 +1,8 @@
-import { Todo } from "@/models/todo";
+import { Todo, TodoWithTimestamps } from "@/models/todo";
 import TodoItem from "./todo-item";
 
 type Props = {
-  todos: Todo[];
+  todos: TodoWithTimestamps[];
 };
 
 export default function TodoList(props: Props) {

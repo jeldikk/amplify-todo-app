@@ -64,6 +64,9 @@ export default function Navigation() {
       </NavbarBrand>
       <NavbarToggle />
       <NavbarCollapse>
+        <NavbarLink as={Link} href="/relations">
+          Relations
+        </NavbarLink>
         <NavbarLink href="#">Services</NavbarLink>
         {authCheck ? (
           <NavbarLink as={Link} href="#" onClick={logoutHandler}>

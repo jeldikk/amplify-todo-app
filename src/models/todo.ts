@@ -15,3 +15,8 @@ export interface Todo {
   status: TodoStatus;
   priority: TodoPriority;
 }
+
+export type TodoWithTimestamps = Todo & {
+  createdAt: string;
+  updatedAt: string;
+};

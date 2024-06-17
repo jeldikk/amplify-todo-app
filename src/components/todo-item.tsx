@@ -1,21 +1,22 @@
 "use client";
-import { type Todo } from "@/models/todo";
+import { TodoWithTimestamps, type Todo } from "@/models/todo";
 // import { updateTodo, deleteTodo } from "@/operations/todo.operations";
 // import { generateClient } from "aws-amplify/api";
 import { Badge, Button } from "flowbite-react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 // import { Schema } from "../../amplify/data/resource";
-import { client } from "../operations/todo.client";
-import { useRouter } from "next/router";
+// import { client } from "../operations/todo.client";
+// import { useRouter } from "next/router";
 import { deleteTodoAction, updateTodoAction } from "@/actions/todo.actions";
 
 type Props = {
-  todo: Todo;
+  todo: TodoWithTimestamps;
 };
 
 export default function TodoItem(props: Props) {
   const { todo } = props;
+  console.log({ todo });
   let priorityType: string, statusType: string;
   switch (todo.priority) {
     case "HIGH":
@@ -71,26 +72,29 @@ export default function TodoItem(props: Props) {
     // console.log({ response });
   };
   return (
-    <div className="todo-item flex px-2 py-3 border border-blue-700 rounded-md my-1">
-      <div className="content w-3/5 font-bold">{todo.content}</div>
-      <div className="badges flex gap-2 w-2/5">
-        <Badge className="font-bold" color={priorityType}>
-          {todo.priority}
-        </Badge>
-        <Badge className="font-bold" color={statusType}>
-          {todo.status}
-        </Badge>
-      </div>
-      <div className=" flex controls w-1/5 gap-1">
-        <Button onClick={toggleTodoHandler} size={"xs"}>
-          {todo.status === "PENDING" ? <FaArrowRight /> : <FaArrowLeft />}
-        </Button>
-        {todo.status === "PENDING" ? (
-          <Button onClick={deleteTodoHandler} color="warning" size="xs">
-            <MdDelete />
+    <div className="todo-item px-2 py-3 border border-blue-700 rounded-md my-1">
+      <div className="flex">
+        <div className="content w-3/5 font-bold">{todo.content}</div>
+        <div className="badges flex gap-2 w-2/5">
+          <Badge className="font-bold" color={priorityType}>
+            {todo.priority}
+          </Badge>
+          <Badge className="font-bold" color={statusType}>
+            {todo.status}
+          </Badge>
+        </div>
+        <div className=" flex controls w-1/5 gap-1">
+          <Button onClick={toggleTodoHandler} size={"xs"}>
+            {todo.status === "PENDING" ? <FaArrowRight /> : <FaArrowLeft />}
           </Button>
-        ) : null}
+          {todo.status === "PENDING" ? (
+            <Button onClick={deleteTodoHandler} color="warning" size="xs">
+              <MdDelete />
+            </Button>
+          ) : null}
+        </div>
       </div>
+      <div className="font-mono text-sm font-bold">{todo.createdAt}</div>
     </div>
   );
 }
